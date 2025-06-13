@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note/presentation/pages/users/user_login_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
@@ -23,9 +24,10 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
     );
 
     if (success) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (_) => const NoteHomePage()),
+        MaterialPageRoute(builder: (_) => const UserLoginPage()),
+          (route)  => false
       );
     } else {
       setState(() {
