@@ -17,8 +17,8 @@ class _NoteHomePageState extends State<NoteHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Keep Clone")),
-      // body: _noteList(Provider.of<NoteProvider>(context, listen: true).noteList),
-      body: Placeholder(),
+      body: _noteList(Provider.of<NoteProvider>(context, listen: true).noteList),
+      // body: Placeholder(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
