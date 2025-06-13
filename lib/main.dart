@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:note/presentation/pages/note_home_page.dart';
+import 'package:note/presentation/pages/users/user_login_page.dart';
+import 'package:note/presentation/providers/auth_provider.dart';
 import 'package:note/presentation/providers/note_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   // runApp(const MyApp());
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => NoteProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => NoteProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -27,7 +32,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home : const NoteHomePage()
+      //   home : const NoteHomePage()
+        home : const UserLoginPage()
     );
   }
 }
