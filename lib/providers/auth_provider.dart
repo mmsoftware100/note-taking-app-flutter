@@ -10,8 +10,9 @@ class AuthProvider with ChangeNotifier {
     final response = await ApiService.login(email, password);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      _token = data['token'];
-      ApiService.token = _token;
+      // ✅ The token is inside "data.access_token"
+      _token = data['data']['access_token'];
+      ApiService.token = _token;  // store in service
       notifyListeners();
       return true;
     }

@@ -13,7 +13,7 @@ class ApiService {
   static Future<http.Response> login(String email, String password) {
     return http.post(
       Uri.parse('$baseURL/login'),
-      headers: headers,
+      headers: {'Content-Type': 'application/json'}, // login doesn't need token
       body: jsonEncode({'email': email, 'password': password}),
     );
   }
@@ -21,7 +21,7 @@ class ApiService {
   static Future<http.Response> register(String name, String email, String password) {
     return http.post(
       Uri.parse('$baseURL/register'),
-      headers: headers,
+      headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'name': name,
         'email': email,
@@ -37,14 +37,16 @@ class ApiService {
   }
 
   static Future<http.Response> createNote(String title, String description, String date) {
-    return http.post(Uri.parse('$baseURL/notes'),
+    return http.post(
+      Uri.parse('$baseURL/notes'),
       headers: headers,
       body: jsonEncode({'title': title, 'description': description, 'date': date}),
     );
   }
 
   static Future<http.Response> updateNote(int id, String title, String description, String date) {
-    return http.put(Uri.parse('$baseURL/notes/$id'),
+    return http.put(
+      Uri.parse('$baseURL/notes/$id'),
       headers: headers,
       body: jsonEncode({'title': title, 'description': description, 'date': date}),
     );

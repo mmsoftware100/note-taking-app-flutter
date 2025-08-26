@@ -7,11 +7,13 @@ class NoteProvider with ChangeNotifier {
   List<Note> _notes = [];
   List<Note> get notes => _notes;
 
+
   Future<void> fetchNotes() async {
     final response = await ApiService.getNotes();
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body);
-      _notes = data.map((e) => Note.fromJson(e)).toList();
+      final jsonBody = jsonDecode(response.body);
+      List notesJson = jsonBody['data'];   // ✅ correct key
+      _notes = notesJson.map((e) => Note.fromJson(e)).toList();
       notifyListeners();
     }
   }

@@ -32,6 +32,12 @@ class _NoteListScreenState extends State<NoteListScreen> {
               Provider.of<AuthProvider>(context, listen: false).logout();
               Navigator.pop(context);
             },
+          ),
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              Provider.of<NoteProvider>(context, listen: false).fetchNotes();
+            },
           )
         ],
       ),
